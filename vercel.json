@@ -12,6 +12,9 @@
       "dest": "/api/$1.js"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/admin",
       "dest": "/admin.html"
     },
