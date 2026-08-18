@@ -1,0 +1,6 @@
+---
+pid: 33804
+cwd: |
+  C:\Users\Administrator
+---
+PS C:\Users\Administrator> 
