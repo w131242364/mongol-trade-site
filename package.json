@@ -1,0 +1,9 @@
+{
+  "name": "mongol-trade-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mongol trade bilingual website with Vercel Postgres backend",
+  "dependencies": {
+    "pg": "^8.12.0"
+  }
+}

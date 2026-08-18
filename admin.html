@@ -20,8 +20,14 @@ header{background:var(--primary);color:#fff;padding:0 24px;height:60px;display:f
 .btn-edit{background:transparent;color:var(--primary-light);border:1px solid var(--primary-light);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;transition:all .2s}.btn-edit:hover{background:var(--primary-light);color:#fff}
 .table-wrap{background:var(--card);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;overflow-x:auto}table{width:100%;border-collapse:collapse}
 th{text-align:left;padding:16px 20px;font-size:14px;font-weight:700;color:var(--muted);background:#f8f9fb;white-space:nowrap}td{padding:16px 20px;border-top:1px solid var(--border);font-size:14px;vertical-align:top}tr:hover{background:#f8f9fb}
-.form-card{background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:32px;margin-bottom:32px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}.form-field{margin-bottom:20px}.form-field label{display:block;font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px}.form-field label .mn-tag{font-size:11px;color:var(--accent);margin-left:6px}.form-field input,.form-field textarea,.form-field select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;background:#fff}.form-field input:focus,.form-field textarea:focus,.form-field select:focus{outline:none;border-color:var(--primary-light)}.form-field textarea{resize:vertical;min-height:70px}.form-actions{display:flex;gap:12px;margin-top:8px}.btn-save{background:var(--primary);color:#fff;border:none;padding:12px 32px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s}.btn-save:hover{background:var(--primary-light)}.btn-cancel{background:transparent;color:var(--muted);border:1px solid var(--border);padding:12px 24px;border-radius:8px;font-size:15px;cursor:pointer}.btn-cancel:hover{background:#f0f2f5}
+.form-card{background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:32px;margin-bottom:32px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}.form-field{margin-bottom:20px}.form-field label{display:block;font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px}.form-field label .mn-tag{font-size:11px;color:var(--accent);margin-left:6px}.form-field input,.form-field textarea,.form-field select{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s;background:#fff}.form-field input:focus,.form-field textarea:focus,.form-field select:focus{outline:none;border-color:var(--primary-light)}.form-field textarea{resize:vertical;min-height:70px}.form-actions{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap}.btn-save{background:var(--primary);color:#fff;border:none;padding:12px 32px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s}.btn-save:hover{background:var(--primary-light)}.btn-cancel{background:transparent;color:var(--muted);border:1px solid var(--border);padding:12px 24px;border-radius:8px;font-size:15px;cursor:pointer}.btn-cancel:hover{background:#f0f2f5}
 .empty{text-align:center;padding:48px;color:var(--muted);font-size:15px}.cat-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}.cat-card{background:var(--card);border-radius:12px;box-shadow:var(--shadow);padding:24px}.cat-card .cat-icon{font-size:36px;margin-bottom:12px}.cat-card h3{font-size:18px;font-weight:700;color:var(--primary);margin-bottom:4px}.cat-card .cat-name-mn{font-size:14px;color:var(--muted);margin-bottom:12px}.cat-card .cat-desc{font-size:13px;color:var(--muted);margin-bottom:16px}.cat-card .cat-actions{display:flex;gap:8px}.notice{position:fixed;top:80px;right:24px;background:var(--success);color:#fff;padding:14px 24px;border-radius:8px;font-size:14px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.15);z-index:200;opacity:0;transform:translateY(-10px);transition:all .3s}.notice.show{opacity:1;transform:translateY(0)}
+.login-box{max-width:420px;margin:40px auto;background:#fff;border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
+.login-box h2{margin-bottom:10px;color:var(--primary)}
+.login-box p{color:var(--muted);font-size:14px;margin-bottom:18px}
+.login-box input{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px}
+.login-box button{width:100%;margin-top:12px}
+.hidden{display:none !important}
 @media(max-width:700px){.form-row{grid-template-columns:1fr}.main{padding:20px 16px}th,td{padding:12px 14px}}
 </style>
 </head>
@@ -32,68 +38,77 @@ th{text-align:left;padding:16px 20px;font-size:14px;font-weight:700;color:var(--
     <h1>管理后台</h1>
   </div>
 </header>
-<div class="tabs">
+<div class="tabs hidden" id="tabsBar">
   <button class="tab-btn active" data-tab="products" onclick="switchTab('products', this)">产品管理</button>
   <button class="tab-btn" data-tab="categories" onclick="switchTab('categories', this)">分类管理</button>
 </div>
 <div class="main">
-  <div class="tab-content active" id="tab-products">
-    <div class="form-card" id="productForm">
-      <h2 style="font-size:20px;font-weight:700;color:var(--primary);margin-bottom:20px" id="productFormTitle">添加产品</h2>
-      <div class="form-row">
-        <div class="form-field"><label>产品名称（中文）</label><input type="text" id="p_name_zh" placeholder="例：VHF 车载电台 KT-8900"></div>
-        <div class="form-field"><label>产品名称（蒙古文） <span class="mn-tag">Монгол</span></label><input type="text" id="p_name_mn" placeholder="Жишээ: Машины станц KT-8900"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field"><label>所属分类</label><select id="p_category"></select></div>
-        <div class="form-field"><label>价格（可选）</label><input type="text" id="p_price" placeholder="例：¥1,280"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>产品图片或图标</label>
-          <input type="file" id="p_image_file" accept="image/*" onchange="handleProductImageFile(event)">
-          <div style="display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:10px;align-items:center">
-            <input type="text" id="p_image" placeholder="可粘贴图片地址，或保留 emoji" value="📦">
-            <div id="p_image_preview" style="width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#f3f6fb;border:1px solid var(--border);overflow:hidden;font-size:28px">📦</div>
+  <div class="login-box" id="loginBox">
+    <h2>后台登录</h2>
+    <p>请输入后台密码后继续管理产品和分类。</p>
+    <input type="password" id="adminPassword" placeholder="后台密码">
+    <button class="btn-save" onclick="loginAdmin()">登录</button>
+  </div>
+
+  <div id="adminContent" class="hidden">
+    <div class="tab-content active" id="tab-products">
+      <div class="form-card" id="productForm">
+        <h2 style="font-size:20px;font-weight:700;color:var(--primary);margin-bottom:20px" id="productFormTitle">添加产品</h2>
+        <div class="form-row">
+          <div class="form-field"><label>产品名称（中文）</label><input type="text" id="p_name_zh" placeholder="例：VHF 车载电台 KT-8900"></div>
+          <div class="form-field"><label>产品名称（蒙古文） <span class="mn-tag">Монгол</span></label><input type="text" id="p_name_mn" placeholder="Жишээ: Машины станц KT-8900"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>所属分类</label><select id="p_category"></select></div>
+          <div class="form-field"><label>价格（可选）</label><input type="text" id="p_price" placeholder="例：¥1,280"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>产品图片或图标</label>
+            <input type="file" id="p_image_file" accept="image/*" onchange="handleProductImageFile(event)">
+            <div style="display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:10px;align-items:center">
+              <input type="text" id="p_image" placeholder="可粘贴图片地址，或保留 emoji" value="📦">
+              <div id="p_image_preview" style="width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#f3f6fb;border:1px solid var(--border);overflow:hidden;font-size:28px">📦</div>
+            </div>
           </div>
         </div>
+        <div class="form-row">
+          <div class="form-field"><label>产品描述（中文）</label><textarea id="p_desc_zh" placeholder="产品简介、参数、特点等..."></textarea></div>
+          <div class="form-field"><label>产品描述（蒙古文） <span class="mn-tag">Монгол</span></label><textarea id="p_desc_mn" placeholder="Бүтээгдэхүүний тодорхойлолт..."></textarea></div>
+        </div>
+        <div class="form-actions"><button class="btn-save" onclick="saveProduct()">保存产品</button><button class="btn-cancel" onclick="resetProductForm()">取消</button><button class="btn-cancel" onclick="logoutAdmin()">退出登录</button></div>
+        <input type="hidden" id="p_id">
       </div>
-      <div class="form-row">
-        <div class="form-field"><label>产品描述（中文）</label><textarea id="p_desc_zh" placeholder="产品简介、参数、特点等..."></textarea></div>
-        <div class="form-field"><label>产品描述（蒙古文） <span class="mn-tag">Монгол</span></label><textarea id="p_desc_mn" placeholder="Бүтээгдэхүүний тодорхойлолт..."></textarea></div>
-      </div>
-      <div class="form-actions"><button class="btn-save" onclick="saveProduct()">保存产品</button><button class="btn-cancel" onclick="resetProductForm()">取消</button></div>
-      <input type="hidden" id="p_id">
+      <div class="section-title"><h2>产品列表</h2><button class="btn-primary" onclick="document.getElementById('productForm').scrollIntoView({behavior:'smooth'})">+ 添加产品</button></div>
+      <div class="table-wrap"><table><thead><tr><th>图标</th><th>产品名称</th><th>分类</th><th>价格</th><th>操作</th></tr></thead><tbody id="productList"></tbody></table></div>
     </div>
-    <div class="section-title"><h2>产品列表</h2><button class="btn-primary" onclick="document.getElementById('productForm').scrollIntoView({behavior:'smooth'})">+ 添加产品</button></div>
-    <div class="table-wrap"><table><thead><tr><th>图标</th><th>产品名称</th><th>分类</th><th>价格</th><th>操作</th></tr></thead><tbody id="productList"></tbody></table></div>
-  </div>
-  <div class="tab-content" id="tab-categories">
-    <div class="form-card" id="categoryForm">
-      <h2 style="font-size:20px;font-weight:700;color:var(--primary);margin-bottom:20px" id="categoryFormTitle">添加分类</h2>
-      <div class="form-row">
-        <div class="form-field"><label>分类名称（中文）</label><input type="text" id="c_name_zh" placeholder="例：无人机"></div>
-        <div class="form-field"><label>分类名称（蒙古文） <span class="mn-tag">Монгол</span></label><input type="text" id="c_name_mn" placeholder="Жишээ: Дрон"></div>
+    <div class="tab-content" id="tab-categories">
+      <div class="form-card" id="categoryForm">
+        <h2 style="font-size:20px;font-weight:700;color:var(--primary);margin-bottom:20px" id="categoryFormTitle">添加分类</h2>
+        <div class="form-row">
+          <div class="form-field"><label>分类名称（中文）</label><input type="text" id="c_name_zh" placeholder="例：无人机"></div>
+          <div class="form-field"><label>分类名称（蒙古文） <span class="mn-tag">Монгол</span></label><input type="text" id="c_name_mn" placeholder="Жишээ: Дрон"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>图标（emoji）</label><input type="text" id="c_icon" placeholder="例：🚁" value="📦"></div>
+          <div class="form-field"><label>颜色（16进制，如 #1a5a9e）</label><input type="text" id="c_color" placeholder="#1a5a9e" value="#1a5a9e"></div>
+        </div>
+        <div class="form-field"><label>渐变色（第二颜色）</label><input type="text" id="c_color2" placeholder="#2d7fd4" value="#2d7fd4"></div>
+        <div class="form-row">
+          <div class="form-field"><label>分类描述（中文）</label><textarea id="c_desc_zh" placeholder="分类简介..."></textarea></div>
+          <div class="form-field"><label>分类描述（蒙古文） <span class="mn-tag">Монгол</span></label><textarea id="c_desc_mn" placeholder="Ангилалын тодорхойлолт..."></textarea></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>特点列表（中文，每行一条）</label><textarea id="c_features_zh" placeholder="特点一&#10;特点二&#10;特点三"></textarea></div>
+          <div class="form-field"><label>特点列表（蒙古文，每行一条） <span class="mn-tag">Монгол</span></label><textarea id="c_features_mn" placeholder="Онцлог 1&#10;Онцлог 2&#10;Онцлог 3"></textarea></div>
+        </div>
+        <div class="form-actions"><button class="btn-save" onclick="saveCategory()">保存分类</button><button class="btn-cancel" onclick="resetCategoryForm()">取消</button></div>
+        <input type="hidden" id="c_id">
       </div>
-      <div class="form-row">
-        <div class="form-field"><label>图标（emoji）</label><input type="text" id="c_icon" placeholder="例：🚁" value="📦"></div>
-        <div class="form-field"><label>颜色（16进制，如 #1a5a9e）</label><input type="text" id="c_color" placeholder="#1a5a9e" value="#1a5a9e"></div>
-      </div>
-      <div class="form-field"><label>渐变色（第二颜色）</label><input type="text" id="c_color2" placeholder="#2d7fd4" value="#2d7fd4"></div>
-      <div class="form-row">
-        <div class="form-field"><label>分类描述（中文）</label><textarea id="c_desc_zh" placeholder="分类简介..."></textarea></div>
-        <div class="form-field"><label>分类描述（蒙古文） <span class="mn-tag">Монгол</span></label><textarea id="c_desc_mn" placeholder="Ангилалын тодорхойлолт..."></textarea></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field"><label>特点列表（中文，每行一条）</label><textarea id="c_features_zh" placeholder="特点一&#10;特点二&#10;特点三"></textarea></div>
-        <div class="form-field"><label>特点列表（蒙古文，每行一条） <span class="mn-tag">Монгол</span></label><textarea id="c_features_mn" placeholder="Онцлог 1&#10;Онцлог 2&#10;Онцлог 3"></textarea></div>
-      </div>
-      <div class="form-actions"><button class="btn-save" onclick="saveCategory()">保存分类</button><button class="btn-cancel" onclick="resetCategoryForm()">取消</button></div>
-      <input type="hidden" id="c_id">
+      <div class="section-title"><h2>分类列表</h2><button class="btn-primary" onclick="document.getElementById('categoryForm').scrollIntoView({behavior:'smooth'})">+ 添加分类</button></div>
+      <div class="cat-list" id="categoryList"></div>
+      <div style="margin-top:32px;text-align:center"><button class="btn-danger" onclick="resetAllData()" style="padding:10px 24px">重置全部数据（恢复默认）</button></div>
     </div>
-    <div class="section-title"><h2>分类列表</h2><button class="btn-primary" onclick="document.getElementById('categoryForm').scrollIntoView({behavior:'smooth'})">+ 添加分类</button></div>
-    <div class="cat-list" id="categoryList"></div>
-    <div style="margin-top:32px;text-align:center"><button class="btn-danger" onclick="resetAllData()" style="padding:10px 24px">重置全部数据（恢复默认）</button></div>
   </div>
 </div>
 <div class="notice" id="notice"></div>
@@ -101,62 +116,37 @@ th{text-align:left;padding:16px 20px;font-size:14px;font-weight:700;color:var(--
 <script>
 var categories = [];
 var products = [];
+var adminPassword = '';
 function switchTab(tab, btn){ document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); }); document.querySelectorAll('.tab-content').forEach(function(c){ c.classList.remove('active'); }); btn.classList.add('active'); document.getElementById('tab-' + tab).classList.add('active'); }
 function showNotice(msg){ var n = document.getElementById('notice'); n.textContent = msg; n.classList.add('show'); setTimeout(function(){ n.classList.remove('show'); }, 2500); }
 function isImageUrl(s){ return typeof s === 'string' && /^https?:\/\/.+\.(png|jpe?g|gif|webp|svg|bmp)/i.test(s); }
 function isDataUrl(s){ return typeof s === 'string' && s.indexOf('data:image/') === 0; }
 function isImageVal(s){ return isImageUrl(s) || isDataUrl(s); }
-function updatePreview(previewId, value, fallback){
-  var el = document.getElementById(previewId);
-  if(!el) return;
-  if(isImageVal(value)){
-    el.innerHTML = '<img src="' + value + '" alt="preview" style="width:100%;height:100%;object-fit:cover;border-radius:12px">';
-    return;
-  }
-  el.innerHTML = '';
-  el.appendChild(document.createTextNode(value || fallback || '📦'));
-}
-function handleProductImageFile(event){
-  var file = event.target.files && event.target.files[0];
-  if(!file) return;
-  var reader = new FileReader();
-  reader.onload = function(e){
-    var dataUrl = e.target.result;
-    document.getElementById('p_image').value = dataUrl;
-    updatePreview('p_image_preview', dataUrl, '📦');
-  };
-  reader.readAsDataURL(file);
-}
-
+function updatePreview(previewId, value, fallback){ var el = document.getElementById(previewId); if(!el) return; if(isImageVal(value)){ el.innerHTML = '<img src="' + value + '" alt="preview" style="width:100%;height:100%;object-fit:cover;border-radius:12px">'; return; } el.innerHTML = ''; el.appendChild(document.createTextNode(value || fallback || '📦')); }
+function handleProductImageFile(event){ var file = event.target.files && event.target.files[0]; if(!file) return; var reader = new FileReader(); reader.onload = function(e){ var dataUrl = e.target.result; document.getElementById('p_image').value = dataUrl; updatePreview('p_image_preview', dataUrl, '📦'); }; reader.readAsDataURL(file); }
+function syncProductFormPreview(){ updatePreview('p_image_preview', document.getElementById('p_image').value.trim(), '📦'); }
 function refreshCategorySelect(){ document.getElementById('p_category').innerHTML = categories.map(function(c){ return '<option value="'+c.id+'">'+c.name_zh+'</option>'; }).join(''); }
-function syncProductFormPreview(){
-  updatePreview('p_image_preview', document.getElementById('p_image').value.trim(), '📦');
-}
-function renderProductList(){
-  var tbody = document.getElementById('productList');
-  if(!products.length){ tbody.innerHTML = '<tr><td colspan="5" class="empty">暂无产品，请在上方表单添加</td></tr>'; return; }
-  tbody.innerHTML = products.map(function(p){ var cat = categories.find(function(c){ return c.id === p.category; }); var catName = cat ? cat.name_zh : '未分类'; return '<tr><td style="font-size:24px">' + (p.image || '📦') + '</td><td><strong>' + (p.name_zh || '') + '</strong><br><span style="color:var(--muted);font-size:13px">' + (p.name_mn || '') + '</span></td><td>' + catName + '</td><td>' + (p.price || '-') + '</td><td style="white-space:nowrap"><button class="btn-edit" onclick="editProduct(\''+p.id+'\')">编辑</button> <button class="btn-danger" onclick="removeProduct(\''+p.id+'\')">删除</button></td></tr>'; }).join('');
-}
-function saveProduct(){
-  var id = document.getElementById('p_id').value;
-  var data = { category: document.getElementById('p_category').value, name_zh: document.getElementById('p_name_zh').value.trim(), name_mn: document.getElementById('p_name_mn').value.trim(), price: document.getElementById('p_price').value.trim(), image: document.getElementById('p_image').value.trim() || '📦', desc_zh: document.getElementById('p_desc_zh').value.trim(), desc_mn: document.getElementById('p_desc_mn').value.trim() };
-  if(!data.name_zh || !data.name_mn){ showNotice('请填写中/蒙产品名称'); return; }
-  if(!data.category){ showNotice('请先添加分类'); return; }
-  if(id){ DB.updateProduct(id, data); showNotice('产品已更新'); } else { DB.addProduct(data); showNotice('产品已添加'); }
-  resetProductForm(); loadData();
-}
-function editProduct(id){ var p = products.find(function(x){ return x.id === id; }); if(!p) return; document.getElementById('p_id').value = p.id; document.getElementById('p_name_zh').value = p.name_zh || ''; document.getElementById('p_name_mn').value = p.name_mn || ''; document.getElementById('p_category').value = p.category || ''; document.getElementById('p_price').value = p.price || ''; document.getElementById('p_image').value = p.image || '📦'; document.getElementById('p_desc_zh').value = p.desc_zh || ''; document.getElementById('p_desc_mn').value = p.desc_mn || ''; document.getElementById('productFormTitle').textContent = '编辑产品'; document.getElementById('productForm').scrollIntoView({behavior:'smooth'}); }
-function removeProduct(id){ if(!confirm('确认删除该产品？')) return; DB.deleteProduct(id); showNotice('产品已删除'); loadData(); }
-function resetProductForm(){ document.getElementById('p_id').value = ''; document.getElementById('p_name_zh').value = ''; document.getElementById('p_name_mn').value = ''; document.getElementById('p_price').value = ''; document.getElementById('p_image').value = '📦'; document.getElementById('p_desc_zh').value = ''; document.getElementById('p_desc_mn').value = ''; document.getElementById('productFormTitle').textContent = '添加产品'; }
+function renderProductList(){ var tbody = document.getElementById('productList'); if(!products.length){ tbody.innerHTML = '<tr><td colspan="5" class="empty">暂无产品，请在上方表单添加</td></tr>'; return; } tbody.innerHTML = products.map(function(p){ var cat = categories.find(function(c){ return c.id === p.category; }); var catName = cat ? cat.name_zh : '未分类'; return '<tr><td style="font-size:24px">' + (p.image || '📦') + '</td><td><strong>' + (p.name_zh || '') + '</strong><br><span style="color:var(--muted);font-size:13px">' + (p.name_mn || '') + '</span></td><td>' + catName + '</td><td>' + (p.price || '-') + '</td><td style="white-space:nowrap"><button class="btn-edit" onclick="editProduct(\''+p.id+'\')">编辑</button> <button class="btn-danger" onclick="removeProduct(\''+p.id+'\')">删除</button></td></tr>'; }).join(''); }
+async function saveProduct(){ var id = document.getElementById('p_id').value; var data = { category: document.getElementById('p_category').value, name_zh: document.getElementById('p_name_zh').value.trim(), name_mn: document.getElementById('p_name_mn').value.trim(), price: document.getElementById('p_price').value.trim(), image: document.getElementById('p_image').value.trim() || '📦', desc_zh: document.getElementById('p_desc_zh').value.trim(), desc_mn: document.getElementById('p_desc_mn').value.trim() }; if(!data.name_zh || !data.name_mn){ showNotice('请填写中/蒙产品名称'); return; } if(!data.category){ showNotice('请先添加分类'); return; } try{ if(id){ await DB.updateProduct(id, data, adminPassword); showNotice('产品已更新'); } else { await DB.addProduct(data, adminPassword); showNotice('产品已添加'); } resetProductForm(); await loadData(); }catch(e){ showNotice(e.message || '保存失败'); } }
+function editProduct(id){ var p = products.find(function(x){ return x.id === id; }); if(!p) return; document.getElementById('p_id').value = p.id; document.getElementById('p_name_zh').value = p.name_zh || ''; document.getElementById('p_name_mn').value = p.name_mn || ''; document.getElementById('p_category').value = p.category || ''; document.getElementById('p_price').value = p.price || ''; document.getElementById('p_image').value = p.image || '📦'; document.getElementById('p_desc_zh').value = p.desc_zh || ''; document.getElementById('p_desc_mn').value = p.desc_mn || ''; document.getElementById('productFormTitle').textContent = '编辑产品'; document.getElementById('productForm').scrollIntoView({behavior:'smooth'}); syncProductFormPreview(); }
+async function removeProduct(id){ if(!confirm('确认删除该产品？')) return; try{ await DB.deleteProduct(id, adminPassword); showNotice('产品已删除'); await loadData(); }catch(e){ showNotice(e.message || '删除失败'); } }
+function resetProductForm(){ document.getElementById('p_id').value = ''; document.getElementById('p_name_zh').value = ''; document.getElementById('p_name_mn').value = ''; document.getElementById('p_price').value = ''; document.getElementById('p_image').value = '📦'; document.getElementById('p_desc_zh').value = ''; document.getElementById('p_desc_mn').value = ''; document.getElementById('productFormTitle').textContent = '添加产品'; syncProductFormPreview(); }
 function renderCategoryList(){ var container = document.getElementById('categoryList'); if(!categories.length){ container.innerHTML = '<div class="empty" style="grid-column:1/-1">暂无分类，请在上方表单添加</div>'; return; } container.innerHTML = categories.map(function(c){ var count = products.filter(function(p){ return p.category === c.id; }).length; return '<div class="cat-card"><div class="cat-icon">' + (c.icon || '📦') + '</div><h3>' + (c.name_zh || '') + '</h3><div class="cat-name-mn">' + (c.name_mn || '') + '</div><div class="cat-desc">' + (c.desc_zh || '') + '</div><div style="font-size:13px;color:var(--muted);margin-bottom:12px">产品数量：' + count + '</div><div class="cat-actions"><button class="btn-edit" onclick="editCategory(\''+c.id+'\')">编辑</button><button class="btn-danger" onclick="removeCategory(\''+c.id+'\')">删除</button></div></div>'; }).join(''); }
-function saveCategory(){ var id = document.getElementById('c_id').value; var data = { name_zh: document.getElementById('c_name_zh').value.trim(), name_mn: document.getElementById('c_name_mn').value.trim(), icon: document.getElementById('c_icon').value.trim() || '📦', color: document.getElementById('c_color').value.trim() || '#1a5a9e', color2: document.getElementById('c_color2').value.trim() || '#2d7fd4', desc_zh: document.getElementById('c_desc_zh').value.trim(), desc_mn: document.getElementById('c_desc_mn').value.trim(), features_zh: document.getElementById('c_features_zh').value.split('\n').map(function(s){return s.trim();}).filter(Boolean), features_mn: document.getElementById('c_features_mn').value.split('\n').map(function(s){return s.trim();}).filter(Boolean) }; if(!data.name_zh || !data.name_mn){ showNotice('请填写中/蒙分类名称'); return; } if(id){ DB.updateCategory(id, data); showNotice('分类已更新'); } else { DB.addCategory(data); showNotice('分类已添加'); } resetCategoryForm(); loadData(); }
+async function saveCategory(){ var id = document.getElementById('c_id').value; var data = { name_zh: document.getElementById('c_name_zh').value.trim(), name_mn: document.getElementById('c_name_mn').value.trim(), icon: document.getElementById('c_icon').value.trim() || '📦', color: document.getElementById('c_color').value.trim() || '#1a5a9e', color2: document.getElementById('c_color2').value.trim() || '#2d7fd4', desc_zh: document.getElementById('c_desc_zh').value.trim(), desc_mn: document.getElementById('c_desc_mn').value.trim(), features_zh: document.getElementById('c_features_zh').value.split('\n').map(function(s){return s.trim();}).filter(Boolean), features_mn: document.getElementById('c_features_mn').value.split('\n').map(function(s){return s.trim();}).filter(Boolean) }; if(!data.name_zh || !data.name_mn){ showNotice('请填写中/蒙分类名称'); return; } try{ if(id){ await DB.updateCategory(id, data, adminPassword); showNotice('分类已更新'); } else { await DB.addCategory(data, adminPassword); showNotice('分类已添加'); } resetCategoryForm(); await loadData(); }catch(e){ showNotice(e.message || '保存失败'); } }
 function editCategory(id){ var c = categories.find(function(x){ return x.id === id; }); if(!c) return; document.getElementById('c_id').value = c.id; document.getElementById('c_name_zh').value = c.name_zh || ''; document.getElementById('c_name_mn').value = c.name_mn || ''; document.getElementById('c_icon').value = c.icon || '📦'; document.getElementById('c_color').value = c.color || '#1a5a9e'; document.getElementById('c_color2').value = c.color2 || '#2d7fd4'; document.getElementById('c_desc_zh').value = c.desc_zh || ''; document.getElementById('c_desc_mn').value = c.desc_mn || ''; document.getElementById('c_features_zh').value = (c.features_zh || []).join('\n'); document.getElementById('c_features_mn').value = (c.features_mn || []).join('\n'); document.getElementById('categoryFormTitle').textContent = '编辑分类'; document.getElementById('categoryForm').scrollIntoView({behavior:'smooth'}); }
-function removeCategory(id){ var count = products.filter(function(p){ return p.category === id; }).length; var msg = count > 0 ? '该分类下有 ' + count + ' 个产品，删除分类将同时删除这些产品。确认删除？' : '确认删除该分类？'; if(!confirm(msg)) return; DB.deleteCategory(id); showNotice('分类已删除'); loadData(); }
+async function removeCategory(id){ var count = products.filter(function(p){ return p.category === id; }).length; var msg = count > 0 ? '该分类下有 ' + count + ' 个产品，删除分类将同时删除这些产品。确认删除？' : '确认删除该分类？'; if(!confirm(msg)) return; try{ await DB.deleteCategory(id, adminPassword); showNotice('分类已删除'); await loadData(); }catch(e){ showNotice(e.message || '删除失败'); } }
 function resetCategoryForm(){ document.getElementById('c_id').value = ''; document.getElementById('c_name_zh').value = ''; document.getElementById('c_name_mn').value = ''; document.getElementById('c_icon').value = '📦'; document.getElementById('c_color').value = '#1a5a9e'; document.getElementById('c_color2').value = '#2d7fd4'; document.getElementById('c_desc_zh').value = ''; document.getElementById('c_desc_mn').value = ''; document.getElementById('c_features_zh').value = ''; document.getElementById('c_features_mn').value = ''; document.getElementById('categoryFormTitle').textContent = '添加分类'; }
-function resetAllData(){ if(!confirm('确认重置全部数据？所有自定义产品和分类将被清除，恢复为默认数据。')) return; DB.resetAll(); showNotice('数据已重置为默认'); loadData(); }
-function loadData(){ categories = DB.getCategories(); products = DB.getProducts(); refreshCategorySelect(); renderProductList(); renderCategoryList(); syncProductFormPreview(); }
+async function resetAllData(){ if(!confirm('确认重置全部数据？所有自定义产品和分类将被清除，恢复为默认数据。')) return; try{ await DB.resetAll(adminPassword); showNotice('数据已重置为默认'); await loadData(); }catch(e){ showNotice(e.message || '重置失败'); } }
+function logoutAdmin(){ adminPassword = ''; if(document.getElementById('adminPassword')) document.getElementById('adminPassword').value = ''; document.getElementById('loginBox').classList.remove('hidden'); document.getElementById('adminContent').classList.add('hidden'); document.getElementById('tabsBar').classList.add('hidden'); }
+async function loginAdmin(){ var pwd = document.getElementById('adminPassword').value.trim(); if(!pwd){ showNotice('请输入后台密码'); return; } adminPassword = pwd; DB.saveAdminPassword(pwd); try{ await DB.init(pwd); document.getElementById('loginBox').classList.add('hidden'); document.getElementById('adminContent').classList.remove('hidden'); document.getElementById('tabsBar').classList.remove('hidden'); await loadData(); showNotice('登录成功'); }catch(e){ showNotice(e.message || '登录失败'); } }
+async function loadData(){ try{ categories = await DB.getCategories(); products = await DB.getProducts(); refreshCategorySelect(); renderProductList(); renderCategoryList(); syncProductFormPreview(); }catch(e){ showNotice(e.message || '加载失败'); } }
 document.getElementById('p_image').addEventListener('input', syncProductFormPreview);
-window.addEventListener('load', loadData);
+window.addEventListener('load', function(){
+  var savedPwd = DB.getAdminPassword();
+  if(savedPwd){
+    document.getElementById('adminPassword').value = savedPwd;
+  }
+});
 </script>
 </body>
 </html>
