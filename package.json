@@ -1,9 +1,0 @@
-{
-  "name": "mongol-trade-site",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Mongoilia trade bilingual product website",
-  "scripts": {
-    "build": "echo \"Static site ready\""
-  }
-}
