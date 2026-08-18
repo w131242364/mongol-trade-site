@@ -103,7 +103,7 @@ var DB = (function () {
 
   async function updateCategory(id, cat, password) {
     try {
-      return await request('/categories/' + encodeURIComponent(id), { method: 'PUT', headers: { 'x-admin-password': password || '' }, body: JSON.stringify(cat) });
+      return await request('/categories?id=' + encodeURIComponent(id), { method: 'PUT', headers: { 'x-admin-password': password || '' }, body: JSON.stringify(cat) });
     } catch (e) {
       var cats = readFallback(KEY_CATEGORIES, []);
       cats = cats.map(function (c) { return c.id === id ? Object.assign({}, c, cat, { id: id }) : c; });
@@ -114,7 +114,7 @@ var DB = (function () {
 
   async function deleteCategory(id, password) {
     try {
-      return await request('/categories/' + encodeURIComponent(id), { method: 'DELETE', headers: { 'x-admin-password': password || '' } });
+      return await request('/categories?id=' + encodeURIComponent(id), { method: 'DELETE', headers: { 'x-admin-password': password || '' } });
     } catch (e) {
       var cats = readFallback(KEY_CATEGORIES, []).filter(function (c) { return c.id !== id; });
       var products = readFallback(KEY_PRODUCTS, []).filter(function (p) { return p.category !== id; });
@@ -138,7 +138,7 @@ var DB = (function () {
 
   async function updateProduct(id, product, password) {
     try {
-      return await request('/products/' + encodeURIComponent(id), { method: 'PUT', headers: { 'x-admin-password': password || '' }, body: JSON.stringify(product) });
+      return await request('/products?id=' + encodeURIComponent(id), { method: 'PUT', headers: { 'x-admin-password': password || '' }, body: JSON.stringify(product) });
     } catch (e) {
       var products = readFallback(KEY_PRODUCTS, []).map(function (p) { return p.id === id ? Object.assign({}, p, product, { id: id }) : p; });
       writeFallback(KEY_PRODUCTS, products);
@@ -148,7 +148,7 @@ var DB = (function () {
 
   async function deleteProduct(id, password) {
     try {
-      return await request('/products/' + encodeURIComponent(id), { method: 'DELETE', headers: { 'x-admin-password': password || '' } });
+      return await request('/products?id=' + encodeURIComponent(id), { method: 'DELETE', headers: { 'x-admin-password': password || '' } });
     } catch (e) {
       var products = readFallback(KEY_PRODUCTS, []).filter(function (p) { return p.id !== id; });
       writeFallback(KEY_PRODUCTS, products);
