@@ -36,7 +36,8 @@ body{
 a{color:inherit;text-decoration:none}
 button,input,textarea,select{font:inherit}
 .container{width:min(var(--max), calc(100% - 32px));margin:0 auto}
-.section{padding:88px 0}
+.section{padding:92px 0;position:relative}
+.section::before{content:'';position:absolute;left:50%;top:0;transform:translateX(-50%);width:min(1200px,calc(100% - 32px));height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,.35),rgba(255,138,31,.35),transparent);opacity:.55}
 .section-dark{color:var(--text)}
 .section-light{background:linear-gradient(180deg,#0b1731 0%,#eef3fb 100%);color:#102033}
 .badge{
@@ -50,6 +51,8 @@ button,input,textarea,select{font:inherit}
 .section-title{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
 .section-title h2{font-size:clamp(26px,3vw,38px);line-height:1.1;margin:0;font-weight:900;color:#102033}
 .section-title p{margin:0;color:#62758f;max-width:620px;line-height:1.7}
+.section-heading{margin-bottom:18px}
+.section-heading .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(59,130,246,.08);color:#173055;border:1px solid rgba(15,61,110,.08);font-size:13px;font-weight:800;box-shadow:0 8px 18px rgba(59,130,246,.06)}
 .site-header{position:sticky;top:0;z-index:200;backdrop-filter:blur(18px);background:rgba(7,17,31,.82);border-bottom:1px solid rgba(255,255,255,.08)}
 .header-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{display:flex;align-items:center;gap:14px;color:#fff;min-width:0}
@@ -78,6 +81,8 @@ button,input,textarea,select{font:inherit}
 .hero-copy .heading{max-width:10ch}
 .hero-copy .subheading{color:rgba(234,240,255,.84)}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.hero-micro{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.hero-micro span{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:rgba(234,240,255,.86);font-size:13px;font-weight:700;backdrop-filter:blur(8px)}
 .cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:16px;font-weight:900;border:1px solid transparent;transition:transform .2s,box-shadow .2s,background .2s}
 .cta:hover{transform:translateY(-2px)}
 .cta.primary{background:linear-gradient(135deg,var(--accent),#ffb85f);color:#1a2437;box-shadow:0 18px 36px rgba(255,138,31,.26)}
@@ -91,6 +96,10 @@ button,input,textarea,select{font:inherit}
 .stat-tile{border-radius:18px;padding:14px 12px;background:rgba(8,17,31,.28);border:1px solid rgba(255,255,255,.08);text-align:center}
 .stat-tile strong{display:block;font-size:24px;color:#fff}
 .stat-tile span{display:block;margin-top:4px;font-size:12px;color:rgba(234,240,255,.72);line-height:1.4}
+.hero-trust{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.trust-item{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px 12px;text-align:center;backdrop-filter:blur(8px)}
+.trust-item strong{display:block;color:#fff;font-size:22px;line-height:1}
+.trust-item span{display:block;margin-top:4px;font-size:12px;color:rgba(234,240,255,.72);line-height:1.4}
 .hero-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .hero-chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px 14px 12px}
 .hero-chip b{display:block;color:#fff;font-size:14px;margin-bottom:4px}
@@ -182,10 +191,11 @@ button,input,textarea,select{font:inherit}
   .header-tools{flex-wrap:wrap}
   .lang-switch{width:100%;justify-content:center}
   .admin-link{width:100%;justify-content:center}
-  .category-grid,.product-grid,.advantages,.about-metrics,.form-grid{grid-template-columns:1fr}
+  .category-grid,.product-grid,.advantages,.about-metrics,.form-grid,.hero-trust{grid-template-columns:1fr}
   .hero{padding:52px 0 70px}
   .section{padding:68px 0}
   .hero-list{grid-template-columns:1fr}
+  .hero-micro{justify-content:flex-start}
 }
 </style>
 </head>
@@ -230,6 +240,16 @@ button,input,textarea,select{font:inherit}
         <div class="hero-actions">
           <a class="cta primary" href="#products" data-zh="查看产品" data-mn="Бүтээгдэхүүн үзэх">查看产品</a>
           <a class="cta secondary" href="#contact" data-zh="联系询价" data-mn="Лавлах">联系询价</a>
+        </div>
+        <div class="hero-micro">
+          <span>ISO / OEM</span>
+          <span data-zh="可批发" data-mn="Бөөний">可批发</span>
+          <span data-zh="可定制" data-mn="Захиалгат">可定制</span>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><strong>3</strong><span data-zh="主分类" data-mn="Үндсэн ангилал">主分类</span></div>
+          <div class="trust-item"><strong>24h</strong><span data-zh="快速响应" data-mn="Шуурхай хариу">快速响应</span></div>
+          <div class="trust-item"><strong>100%</strong><span data-zh="双语支持" data-mn="Хос хэл">双语支持</span></div>
         </div>
       </div>
       <div class="hero-mini">
