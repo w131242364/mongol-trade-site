@@ -8,8 +8,10 @@
 <style>
 :root{
   --bg:#07111f;
+  --bg-soft:#0a1730;
   --panel:rgba(255,255,255,.07);
-  --border:rgba(255,255,255,.12);
+  --panel-strong:rgba(255,255,255,.12);
+  --line:rgba(255,255,255,.1);
   --text:#eaf0ff;
   --muted:#b7c2d9;
   --primary:#3b82f6;
@@ -37,7 +39,11 @@ button,input,textarea,select{font:inherit}
 .section{padding:88px 0}
 .section-dark{color:var(--text)}
 .section-light{background:#eef3fb;color:#102033}
-.badge{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:#fff;font-size:14px;font-weight:700;backdrop-filter:blur(10px)}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);
+  color:#fff;font-size:14px;font-weight:700;backdrop-filter:blur(10px)
+}
 .badge.light{border-color:rgba(15,61,110,.12);background:rgba(255,255,255,.72);color:#0f3d6e}
 .heading{font-size:clamp(28px,4vw,52px);line-height:1.08;margin:16px 0 16px;font-weight:900;letter-spacing:-.02em}
 .subheading{font-size:clamp(16px,1.4vw,19px);line-height:1.7;color:var(--muted);max-width:720px}
@@ -89,6 +95,8 @@ button,input,textarea,select{font:inherit}
 .hero-chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px 14px 12px}
 .hero-chip b{display:block;color:#fff;font-size:14px;margin-bottom:4px}
 .hero-chip span{font-size:12px;color:rgba(234,240,255,.72);line-height:1.5}
+.section-heading{margin-bottom:16px}
+.section-heading .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(59,130,246,.08);color:#173055;border:1px solid rgba(15,61,110,.08);font-size:13px;font-weight:800}
 .feature-tabs{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 24px}
 .filter-tab{border:none;cursor:pointer;border-radius:999px;padding:12px 18px;font-weight:800;font-size:14px;background:#fff;color:#173055;box-shadow:0 10px 24px rgba(12,22,36,.08);transition:all .2s}
 .filter-tab:hover{transform:translateY(-1px)}
@@ -125,7 +133,8 @@ button,input,textarea,select{font:inherit}
 .product-btn:hover{filter:brightness(1.03)}
 .empty-state{grid-column:1/-1;background:#fff;border-radius:24px;padding:40px;text-align:center;color:#6b7b92;box-shadow:0 18px 45px rgba(12,22,36,.07);border:1px dashed rgba(15,61,110,.14)}
 .advantages{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:26px}
-.adv-card{background:rgba(255,255,255,.76);border:1px solid rgba(15,61,110,.08);border-radius:24px;padding:22px;box-shadow:0 18px 45px rgba(12,22,36,.06)}
+.adv-card{background:#fff;border:1px solid rgba(15,61,110,.08);border-radius:24px;padding:22px;box-shadow:0 18px 45px rgba(12,22,36,.06)}
+.adv-card:hover{transform:translateY(-4px)}
 .adv-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(255,138,31,.12));font-size:24px;margin-bottom:16px}
 .adv-card h3{margin:0 0 8px;font-size:18px;color:#173055}
 .adv-card p{margin:0;color:#5c708d;line-height:1.7;font-size:14px}
@@ -249,9 +258,9 @@ button,input,textarea,select{font:inherit}
   </section>
   <section id="products" class="section section-light">
     <div class="container">
-      <div class="section-title">
+      <div class="section-title section-heading">
         <div>
-          <span class="badge light" data-zh="产品展示" data-mn="Бүтээгдэхүүний танилцуулга">产品展示</span>
+          <span class="eyebrow" data-zh="产品展示" data-mn="Бүтээгдэхүүний танилцуулга">产品展示</span>
           <h2 data-zh="产品分类与热门产品" data-mn="Ангилал ба түгээмэл бүтээгдэхүүн">产品分类与热门产品</h2>
         </div>
         <p data-zh="先按分类看产品，再往后台继续添加更多产品和分类。" data-mn="Эхлээд ангиллаар нь бүтээгдэхүүнээ харж, дараа нь удирдлагаас шинэ бүтээгдэхүүн, шинэ ангилал нэмээрэй.">先按分类看产品，再往后台继续添加更多产品和分类。</p>
@@ -259,9 +268,9 @@ button,input,textarea,select{font:inherit}
       <div class="feature-tabs" id="filterTabs"><div class="loading-state">Loading...</div></div>
       <div class="category-grid" id="categoryGrid"><div class="loading-state">Loading...</div></div>
       <div class="product-shell">
-        <div class="section-title" style="margin-bottom:18px">
+        <div class="section-title section-heading" style="margin-bottom:18px">
           <div>
-            <span class="badge light" data-zh="产品列表" data-mn="Бүтээгдэхүүний жагсаалт">产品列表</span>
+            <span class="eyebrow" data-zh="产品列表" data-mn="Бүтээгдэхүүний жагсаалт">产品列表</span>
             <h2 data-zh="你后台添加的产品会自动出现在这里" data-mn="Та удирдлагаас нэмсэн бүтээгдэхүүн энд автоматаар гарна">你后台添加的产品会自动出现在这里</h2>
           </div>
           <p data-zh="页面采用真实可用的数据渲染方式，后面你自己加内容就行。" data-mn="Хуудас нь бодит өгөгдөл дээр үндэслэн дүрслэгддэг тул дараа нь өөрөө л агуулга нэмэхэд хангалттай.">页面采用真实可用的数据渲染方式，后面你自己加内容就行。</p>
@@ -272,7 +281,7 @@ button,input,textarea,select{font:inherit}
   </section>
   <section id="advantages" class="section section-dark">
     <div class="container">
-      <div class="section-title">
+      <div class="section-title section-heading">
         <div>
           <span class="badge" data-zh="服务优势" data-mn="Үйлчилгээний давуу тал">服务优势</span>
           <h2 data-zh="让外贸客户更容易下单" data-mn="Гадаад худалдааны хэрэглэгчдэд захиалга өгөхөд хялбар">让外贸客户更容易下单</h2>
@@ -290,7 +299,7 @@ button,input,textarea,select{font:inherit}
   <section id="about" class="section section-light">
     <div class="container about-grid">
       <div class="panel about-copy">
-        <span class="badge light" data-zh="关于我们" data-mn="Бидний тухай">关于我们</span>
+        <span class="eyebrow" data-zh="关于我们" data-mn="Бидний тухай">关于我们</span>
         <h2 style="font-size:clamp(26px,3vw,38px);margin:14px 0 18px;font-weight:900;color:#173055" data-zh="面向蒙古市场的通讯安防供应商" data-mn="Монголын зах зээлд чиглэсэн холбоо ба аюулгүй байдлын нийлүүлэгч">面向蒙古市场的通讯安防供应商</h2>
         <p data-zh="我们专注蒙古国外贸业务，主营车载电台、对讲机、监控摄像头等产品，适合物流运输、车队通讯、工地施工、酒店安保、商铺监控等场景。" data-mn="Бид Монголын гадаад худалдаанд төвлөрч, машин станц, гар станц, хяналтын камер зэрэг бүтээгдэхүүн нийлүүлдэг. Энэ нь логистик, машин багц, барилгын ажил, зочид буудлын хамгаалалт, дэлгүүрийн хяналт зэрэгт тохиромжтой.">我们专注蒙古国外贸业务，主营车载电台、对讲机、监控摄像头等产品，适合物流运输、车队通讯、工地施工、酒店安保、商铺监控等场景。</p>
         <p data-zh="这个网页现在已经按“真正可用的网站”来做了：有首页、分类、产品、优势、关于、联系，也有后台管理。你后续如果要加别的产品，只要到后台添加就行。" data-mn="Энэ вэбсайтыг одоо “жинхэнэ ашиглаж болох сайт” байдлаар хийсэн: нүүр хуудас, ангилал, бүтээгдэхүүн, давуу тал, бидний тухай, холбоо барих, мөн удирдлагын хэсэгтэй. Дараа нь өөр бүтээгдэхүүн нэмэх бол удирдлагаас л нэмэхэд хангалттай.">这个网页现在已经按“真正可用的网站”来做了：有首页、分类、产品、优势、关于、联系，也有后台管理。你后续如果要加别的产品，只要到后台添加就行。</p>
@@ -316,7 +325,7 @@ button,input,textarea,select{font:inherit}
         </div>
       </div>
       <div class="inquiry-form">
-        <span class="badge light" data-zh="询价表单" data-mn="Лавлах форм">询价表单</span>
+        <span class="eyebrow" data-zh="询价表单" data-mn="Лавлах форм">询价表单</span>
         <h3 style="margin:14px 0 8px;font-size:24px;color:#173055" data-zh="给客户一个可以填写需求的地方" data-mn="Хэрэглэгч шаардлагаа бичих хэсэг">给客户一个可以填写需求的地方</h3>
         <p style="margin:0 0 18px;color:#5c708d;line-height:1.8" data-zh="现在先做成展示型表单，后面如果你要真实提交，我可以继续帮你接邮箱、微信、数据库或者后台接口。" data-mn="Одоогоор харуулах зориулалттай форм хийсэн. Хэрэв дараа нь бодитоор илгээдэг болгох хүсвэл имэйл, WeChat, дата бааз эсвэл backend API-тай холбож өгч чадна.">现在先做成展示型表单，后面如果你要真实提交，我可以继续帮你接邮箱、微信、数据库或者后台接口。</p>
         <div class="form-grid">
@@ -352,137 +361,18 @@ var currentLang = 'zh';
 var currentFilter = 'all';
 var currentCategories = [];
 var currentProducts = [];
-
-function setTextByLang(root, lang){
-  root.querySelectorAll('[data-zh][data-mn]').forEach(function(el){
-    var text = el.getAttribute('data-' + lang);
-    if (text !== null && text !== undefined) el.textContent = text;
-  });
-}
-
+function setTextByLang(root, lang){ root.querySelectorAll('[data-zh][data-mn]').forEach(function(el){ var text = el.getAttribute('data-' + lang); if (text !== null && text !== undefined) el.textContent = text; }); }
 function getLangText(zh, mn){ return currentLang === 'zh' ? zh : mn; }
-
-function closeMobileNav(){
-  var panel = document.getElementById('navPanel');
-  var toggle = document.getElementById('navToggle');
-  if(panel) panel.classList.remove('open');
-  if(toggle) toggle.setAttribute('aria-expanded', 'false');
-}
-
-function toggleMobileNav(){
-  var panel = document.getElementById('navPanel');
-  var toggle = document.getElementById('navToggle');
-  var open = panel.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-}
-
-async function loadState(){
-  try{
-    var data = await Promise.all([DB.getCategories(), DB.getProducts()]);
-    currentCategories = data[0] || [];
-    currentProducts = data[1] || [];
-    renderAll();
-  }catch(err){
-    document.getElementById('filterTabs').innerHTML = '<div class="loading-state">' + (err.message || 'Load failed') + '</div>';
-    document.getElementById('categoryGrid').innerHTML = '';
-    document.getElementById('productGrid').innerHTML = '';
-  }
-}
-
-function renderFilters(){
-  var wrap = document.getElementById('filterTabs');
-  var html = '<button type="button" class="filter-tab ' + (currentFilter === 'all' ? 'active' : '') + '" onclick="setFilter(\'all\')">' + getLangText('全部分类', 'Бүх ангилал') + '</button>';
-  currentCategories.forEach(function(cat){
-    html += '<button type="button" class="filter-tab ' + (currentFilter === cat.id ? 'active' : '') + '" onclick="setFilter(\'' + cat.id + '\')">' + (cat.icon || '📦') + ' ' + getLangText(cat.name_zh || '', cat.name_mn || '') + '</button>';
-  });
-  wrap.innerHTML = html;
-}
-
-function setFilter(id){
-  currentFilter = id;
-  renderAll();
-}
-
-function renderCategories(){
-  var wrap = document.getElementById('categoryGrid');
-  if(!currentCategories.length){
-    wrap.innerHTML = '<div class="empty-state">' + getLangText('暂无分类，请到后台添加。', 'Одоогоор ангилал алга. Удирдлагаас нэмнэ үү.') + '</div>';
-    return;
-  }
-  var html = '';
-  currentCategories.forEach(function(cat){
-    var count = currentProducts.filter(function(p){ return p.category === cat.id; }).length;
-    var feats = currentLang === 'zh' ? (cat.features_zh || []) : (cat.features_mn || []);
-    html += '<article class="category-card">' +
-      '<div class="category-visual" style="background:linear-gradient(135deg,' + (cat.color || '#1a5a9e') + ',' + (cat.color2 || '#2d7fd4') + ')">' +
-        '<div class="emoji">' + (cat.icon || '📦') + '</div>' +
-        '<div class="count">' + count + ' ' + getLangText('个产品', 'бүтээгдэхүүн') + '</div>' +
-      '</div>' +
-      '<h3>' + getLangText(cat.name_zh || '', cat.name_mn || '') + '</h3>' +
-      '<p>' + getLangText(cat.desc_zh || '', cat.desc_mn || '') + '</p>' +
-      '<ul class="feature-list">' + feats.slice(0, 4).map(function(f){ return '<li>' + f + '</li>'; }).join('') + '</ul>' +
-      '<div class="card-actions"><button type="button" class="btn-outline" onclick="setFilter(\'' + cat.id + '\')">' + getLangText('查看该分类', 'Энэ ангиллыг үзэх') + '</button></div>' +
-    '</article>';
-  });
-  wrap.innerHTML = html;
-}
-
-function renderProducts(){
-  var wrap = document.getElementById('productGrid');
-  var list = currentFilter === 'all' ? currentProducts : currentProducts.filter(function(p){ return p.category === currentFilter; });
-  if(!list.length){
-    wrap.innerHTML = '<div class="empty-state">' + getLangText('暂无产品，请到后台添加新产品。', 'Одоогоор бүтээгдэхүүн алга. Удирдлагаас шинэ бүтээгдэхүүн нэмнэ үү.') + '</div>';
-    return;
-  }
-  var html = '';
-  list.forEach(function(p){
-    var cat = currentCategories.find(function(c){ return c.id === p.category; });
-    var features = cat ? (currentLang === 'zh' ? (cat.features_zh || []) : (cat.features_mn || [])) : [];
-    html += '<article class="product-card">' +
-      '<div class="product-visual" style="background:linear-gradient(135deg,' + (cat ? (cat.color || '#1a5a9e') : '#1a5a9e') + ',' + (cat ? (cat.color2 || '#2d7fd4') : '#2d7fd4') + ')">' +
-        '<div class="emoji">' + (p.image || '📦') + '</div>' +
-        (p.price ? '<div class="price-pill">' + p.price + '</div>' : '<div></div>') +
-      '</div>' +
-      '<div class="product-body">' +
-        '<h3>' + getLangText(p.name_zh || '', p.name_mn || '') + '</h3>' +
-        '<p>' + getLangText(p.desc_zh || '', p.desc_mn || '') + '</p>' +
-        '<div class="product-meta">' + features.slice(0, 3).map(function(f){ return '<span class="meta-tag">' + f + '</span>'; }).join('') + '</div>' +
-        '<a class="product-btn" href="#contact">' + getLangText('咨询采购', 'Захиалга лавлах') + '</a>' +
-      '</div>' +
-    '</article>';
-  });
-  wrap.innerHTML = html;
-}
-
-function renderAll(){
-  setTextByLang(document, currentLang);
-  document.querySelectorAll('.lang-btn').forEach(function(btn){ btn.classList.remove('active'); });
-  if(currentLang === 'zh') document.querySelector('.lang-btn:first-child').classList.add('active');
-  else document.querySelector('.lang-btn:last-child').classList.add('active');
-  document.documentElement.lang = currentLang;
-  renderFilters();
-  renderCategories();
-  renderProducts();
-  closeMobileNav();
-}
-
-function switchLang(lang){
-  currentLang = lang;
-  renderAll();
-}
-
-window.addEventListener('load', function(){
-  document.getElementById('navToggle').addEventListener('click', toggleMobileNav);
-  document.addEventListener('click', function(e){
-    var panel = document.getElementById('navPanel');
-    var toggle = document.getElementById('navToggle');
-    if(!panel || !toggle) return;
-    if(window.innerWidth <= 760 && panel.classList.contains('open') && !panel.contains(e.target) && e.target !== toggle){
-      closeMobileNav();
-    }
-  });
-  loadState();
-});
+function closeMobileNav(){ var panel = document.getElementById('navPanel'); var toggle = document.getElementById('navToggle'); if(panel) panel.classList.remove('open'); if(toggle) toggle.setAttribute('aria-expanded', 'false'); }
+function toggleMobileNav(){ var panel = document.getElementById('navPanel'); var toggle = document.getElementById('navToggle'); var open = panel.classList.toggle('open'); toggle.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+async function loadState(){ try{ var data = await Promise.all([DB.getCategories(), DB.getProducts()]); currentCategories = data[0] || []; currentProducts = data[1] || []; renderAll(); }catch(err){ document.getElementById('filterTabs').innerHTML = '<div class="loading-state">' + (err.message || 'Load failed') + '</div>'; document.getElementById('categoryGrid').innerHTML = ''; document.getElementById('productGrid').innerHTML = ''; } }
+function renderFilters(){ var wrap = document.getElementById('filterTabs'); var html = '<button type="button" class="filter-tab ' + (currentFilter === 'all' ? 'active' : '') + '" onclick="setFilter(\'all\')">' + getLangText('全部分类', 'Бүх ангилал') + '</button>'; currentCategories.forEach(function(cat){ html += '<button type="button" class="filter-tab ' + (currentFilter === cat.id ? 'active' : '') + '" onclick="setFilter(\'' + cat.id + '\')">' + (cat.icon || '📦') + ' ' + getLangText(cat.name_zh || '', cat.name_mn || '') + '</button>'; }); wrap.innerHTML = html; }
+function setFilter(id){ currentFilter = id; renderAll(); }
+function renderCategories(){ var wrap = document.getElementById('categoryGrid'); if(!currentCategories.length){ wrap.innerHTML = '<div class="empty-state">' + getLangText('暂无分类，请到后台添加。', 'Одоогоор ангилал алга. Удирдлагаас нэмнэ үү.') + '</div>'; return; } var html = ''; currentCategories.forEach(function(cat){ var count = currentProducts.filter(function(p){ return p.category === cat.id; }).length; var feats = currentLang === 'zh' ? (cat.features_zh || []) : (cat.features_mn || []); html += '<article class="category-card">' + '<div class="category-visual" style="background:linear-gradient(135deg,' + (cat.color || '#1a5a9e') + ',' + (cat.color2 || '#2d7fd4') + ')">' + '<div class="emoji">' + (cat.icon || '📦') + '</div>' + '<div class="count">' + count + ' ' + getLangText('个产品', 'бүтээгдэхүүн') + '</div>' + '</div>' + '<h3>' + getLangText(cat.name_zh || '', cat.name_mn || '') + '</h3>' + '<p>' + getLangText(cat.desc_zh || '', cat.desc_mn || '') + '</p>' + '<ul class="feature-list">' + feats.slice(0, 4).map(function(f){ return '<li>' + f + '</li>'; }).join('') + '</ul>' + '<div class="card-actions"><button type="button" class="btn-outline" onclick="setFilter(\'' + cat.id + '\')">' + getLangText('查看该分类', 'Энэ ангиллыг үзэх') + '</button></div>' + '</article>'; }); wrap.innerHTML = html; }
+function renderProducts(){ var wrap = document.getElementById('productGrid'); var list = currentFilter === 'all' ? currentProducts : currentProducts.filter(function(p){ return p.category === currentFilter; }); if(!list.length){ wrap.innerHTML = '<div class="empty-state">' + getLangText('暂无产品，请到后台添加新产品。', 'Одоогоор бүтээгдэхүүн алга. Удирдлагаас шинэ бүтээгдэхүүн нэмнэ үү.') + '</div>'; return; } var html = ''; list.forEach(function(p){ var cat = currentCategories.find(function(c){ return c.id === p.category; }); var features = cat ? (currentLang === 'zh' ? (cat.features_zh || []) : (cat.features_mn || [])) : []; html += '<article class="product-card">' + '<div class="product-visual" style="background:linear-gradient(135deg,' + (cat ? (cat.color || '#1a5a9e') : '#1a5a9e') + ',' + (cat ? (cat.color2 || '#2d7fd4') : '#2d7fd4') + ')">' + '<div class="emoji">' + (p.image || '📦') + '</div>' + (p.price ? '<div class="price-pill">' + p.price + '</div>' : '<div></div>') + '</div>' + '<div class="product-body">' + '<h3>' + getLangText(p.name_zh || '', p.name_mn || '') + '</h3>' + '<p>' + getLangText(p.desc_zh || '', p.desc_mn || '') + '</p>' + '<div class="product-meta">' + features.slice(0, 3).map(function(f){ return '<span class="meta-tag">' + f + '</span>'; }).join('') + '</div>' + '<a class="product-btn" href="#contact">' + getLangText('咨询采购', 'Захиалга лавлах') + '</a>' + '</div>' + '</article>'; }); wrap.innerHTML = html; }
+function renderAll(){ setTextByLang(document, currentLang); document.querySelectorAll('.lang-btn').forEach(function(btn){ btn.classList.remove('active'); }); if(currentLang === 'zh') document.querySelector('.lang-btn:first-child').classList.add('active'); else document.querySelector('.lang-btn:last-child').classList.add('active'); document.documentElement.lang = currentLang; renderFilters(); renderCategories(); renderProducts(); closeMobileNav(); }
+function switchLang(lang){ currentLang = lang; renderAll(); }
+window.addEventListener('load', function(){ document.getElementById('navToggle').addEventListener('click', toggleMobileNav); document.addEventListener('click', function(e){ var panel = document.getElementById('navPanel'); var toggle = document.getElementById('navToggle'); if(!panel || !toggle) return; if(window.innerWidth <= 760 && panel.classList.contains('open') && !panel.contains(e.target) && e.target !== toggle){ closeMobileNav(); } }); loadState(); });
 </script>
 </body>
 </html>
