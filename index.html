@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="mn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -146,6 +146,13 @@ button,input,textarea,select{font:inherit}
 .contact-line{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:14px 16px;border-radius:16px}
 .contact-line strong{display:block;color:#fff}
 .contact-line span{display:block;color:#dbe6f5;font-size:14px;line-height:1.6}
+.qr-panel{margin-top:18px;background:#fff;border-radius:20px;padding:16px;box-shadow:var(--shadow-strong);display:grid;gap:14px}
+.qr-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.qr-title strong{display:block;font-size:16px;color:var(--text)}
+.qr-title span{display:block;margin-top:4px;color:var(--muted);font-size:13px;line-height:1.6}
+.qr-id{padding:8px 12px;border-radius:999px;background:var(--primary);color:#fff;font-weight:800;font-size:13px}
+.qr-body{display:flex;justify-content:center;background:#f7f9fd;border:1px solid var(--border);border-radius:16px;padding:14px}
+.qr-img{width:min(100%,240px);display:block;border-radius:12px}
 .form-card{background:#fff;border:1px solid var(--border);border-radius:24px;padding:24px;box-shadow:var(--shadow)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field{display:flex;flex-direction:column;gap:8px}
@@ -199,8 +206,8 @@ button,input,textarea,select{font:inherit}
         </nav>
         <div class="header-tools">
           <div class="lang-switch">
-            <button class="lang-btn active" type="button" onclick="switchLang('zh')">中文</button>
-            <button class="lang-btn" type="button" onclick="switchLang('mn')">Монгол</button>
+            <button class="lang-btn" type="button" onclick="switchLang('zh')">中文</button>
+            <button class="lang-btn active" type="button" onclick="switchLang('mn')">Монгол</button>
           </div>
           <a class="admin-link" href="admin.html" data-zh="管理后台" data-mn="Удирдлага">管理后台</a>
         </div>
@@ -313,18 +320,22 @@ button,input,textarea,select{font:inherit}
         <span class="badge" data-zh="联系我们" data-mn="Бидэнтэй холбогдох">联系我们</span>
         <h2 class="heading" style="font-size:clamp(28px,3.2vw,40px);margin-top:14px" data-zh="欢迎咨询报价和产品合作" data-mn="Үнийн санал болон бүтээгдэхүүний хамтын ажиллагааг лавлаарай">欢迎咨询报价和产品合作</h2>
         <p class="subheading" style="color:#dbe6f5;max-width:none" data-zh="欢迎通过电话、微信或邮箱联系我们，我们可根据您的需求提供产品报价、批发方案与项目配套建议。" data-mn="Утас, WeChat эсвэл имэйлээр холбогдоно уу. Бид таны хэрэгцээнд үндэслэн үнийн санал, бөөний шийдэл болон төслийн иж бүрдлийн зөвлөгөө өгнө.">欢迎通过电话、微信或邮箱联系我们，我们可根据您的需求提供产品报价、批发方案与项目配套建议。</p>
+        <div class="qr-panel">
+          <div class="qr-head">
+            <div class="qr-title">
+              <strong data-zh="微信扫码联系" data-mn="WeChat QR код">微信扫码联系</strong>
+              <span data-zh="扫码添加微信，获取产品资料与报价" data-mn="QR код скан хийж бүтээгдэхүүний мэдээлэл болон үнийн санал аваарай">扫码添加微信，获取产品资料与报价</span>
+            </div>
+            <span class="qr-id">w15561268191</span>
+          </div>
+          <div class="qr-body">
+            <img src="微信图片_20260428121141_95_61.jpg" alt="微信二维码" class="qr-img">
+          </div>
+        </div>
         <div class="contact-lines">
           <div class="contact-line"><strong data-zh="微信" data-mn="WeChat">微信</strong><span>w15561268191</span></div>
           <div class="contact-line"><strong data-zh="电话" data-mn="Утас">电话</strong><span>17604898191</span></div>
           <div class="contact-line"><strong data-zh="邮箱" data-mn="Имэйл">邮箱</strong><span>w17604898191@163.com</span></div>
-        </div>
-        <div style="margin-top:16px;display:flex;justify-content:center">
-          <img src="微信图片_20260428121141_95_61.jpg" alt="微信二维码" style="width:min(100%,220px);border-radius:16px;border:1px solid rgba(255,255,255,.16);box-shadow:0 14px 30px rgba(0,0,0,.2)">
-        </div>
-        <div class="contact-lines">
-          <div class="contact-line"><strong>微信</strong><span>w15561268191</span></div>
-          <div class="contact-line"><strong>电话</strong><span>17604898191</span></div>
-          <div class="contact-line"><strong>邮箱</strong><span>w17604898191@163.com</span></div>
         </div>
       </div>
       <div class="form-card">
@@ -360,7 +371,7 @@ button,input,textarea,select{font:inherit}
 </footer>
 <script src="data.js"></script>
 <script>
-var currentLang = 'zh';
+var currentLang = 'mn';
 var currentFilter = 'all';
 var currentCategories = [];
 var currentProducts = [];
