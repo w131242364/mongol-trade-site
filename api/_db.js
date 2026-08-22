@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 
-const DEFAULT_PASSWORD = 'mongol-admin-2026';
+const DEFAULT_PASSWORD = 'WDPHL131242364';
 const DEFAULT_CATEGORIES = [
   {
     id: 'cat_vehicle_radio',

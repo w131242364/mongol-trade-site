@@ -29,4 +29,4 @@
 
 ## 后台密码
 
-默认初始化口令为 `mongol-admin-2026`，建议部署后立刻修改 `ADMIN_PASSWORD`。
+默认初始化口令为 `WDPHL131242364`，建议部署后立刻修改 `ADMIN_PASSWORD`。

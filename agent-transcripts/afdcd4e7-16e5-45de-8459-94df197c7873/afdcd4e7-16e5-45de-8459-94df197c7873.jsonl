@@ -64,3 +64,25 @@
 {"type":"turn_ended","status":"success"}
 {"type":"turn_ended","status":"success"}
 {"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"error","error":"User aborted request"}
+{"type":"turn_ended","status":"error","error":"User aborted request"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"error","error":"Unable to reach the model provider TypeError: Cannot read properties of undefined (reading 'value')\n    at _0x475b22.<computed> [as onChat] (C:\\Users\\Administrator\\AppData\\Local\\Temp\\api-worker:1586:3751903)\n    at _0x303626 (C:\\Users\\Administrator\\AppData\\Local\\Temp\\api-worker:1586:4782739)\n    at async rd.<anonymous> (C:\\Users\\Administrator\\AppData\\Local\\Temp\\api-worker:1586:590169)"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"error","error":"User aborted request"}
+{"type":"turn_ended","status":"error","error":"User aborted request"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"error","error":"User aborted request"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"error","error":"User aborted request"}
+{"type":"turn_ended","status":"error","error":"User aborted request"}
+{"type":"turn_ended","status":"success"}
+{"type":"turn_ended","status":"success"}
